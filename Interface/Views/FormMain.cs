@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 using MetroFramework.Forms;
 using Presenters.IViews;
@@ -37,11 +31,22 @@ namespace Interface.Views
 
         
 
-        public void OpenFileDialog()
+        public FileInfo OpenFileDialog()
         {
-            //Open file dialog
+            OpenFileDialog dialog = new OpenFileDialog
+            {
+                Title = @"Select Excel File",
+                Filter = @"XLS|*.xls|XLSX|*.xlsx",
+                Multiselect = false
+            };
+
+            return dialog.ShowDialog() != DialogResult.OK ? 
+                null : new FileInfo(dialog.FileName);
         }
 
-        
+        public void ShowMessage(string message)
+        {
+            MessageBox.Show(message, @"Info");
+        }
     }
 }

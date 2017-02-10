@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,9 @@ namespace Presenters.Presenters
         public PresenterMain(IViewMain viewMain)
         {
             _viewMain = viewMain;
-
+            
+            _viewMain.SelectFileRequested += SelectFileRequestedHandler;
+            _viewMain.ShowDataRequested += ShowDataRequestedHandler;
             _viewMain.ViewCloseRequested += ViewCloseRequestedHandler;
         }
 
@@ -30,11 +33,19 @@ namespace Presenters.Presenters
 
         public void SelectFileRequestedHandler()
         {
+            FileInfo file = _viewMain.OpenFileDialog();
+
+            if (file == null) { return; }
+
+            _viewMain.ShowMessage(file.Name);
         }
+
 
         public void ShowDataRequestedHandler()
         {
+            _viewMain.ShowMessage(@"UNDER CONSTRUCTION");
         }
+
 
         public void ViewCloseRequestedHandler()
         {

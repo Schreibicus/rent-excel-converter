@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,8 @@ namespace Presenters.IViews
         event Action ShowDataRequested;
         event Action ViewCloseRequested;
 
-        void OpenFileDialog();
+        FileInfo OpenFileDialog();
+
+        void ShowMessage(string message);
     }
 }
