@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Interface.Views;
+using Presenters.IPresenters;
+using Presenters.Presenters;
 
 namespace Interface
 {
@@ -16,7 +16,9 @@ namespace Interface
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            IPresenterMain presenterMain = new PresenterMain(new FormMain());
+            presenterMain.Run();
         }
     }
 }
